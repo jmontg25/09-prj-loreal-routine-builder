@@ -13,6 +13,12 @@ body {
   justify-content: center;
 }
 
+:root {
+  --loreal-red: #ff003b;
+  --loreal-gold: #e3a535;
+  --muted: #666666;
+}
+
 .page-wrapper {
   width: 90%;
   max-width: 900px;
@@ -42,20 +48,29 @@ body {
   display: flex;
 }
 
-.search-section select {
-  width: 100%;
-  padding: 16px;
-  font-size: 18px;
-  border: 2px solid #000;
+.search-section select,
+.search-section input[type="search"] {
+  padding: 12px 14px;
+  font-size: 16px;
+  border: 2px solid #ddd;
   border-radius: 8px;
   cursor: pointer;
   background-color: white;
   font-weight: 500;
 }
 
+.search-section select {
+  flex: 1 1 280px;
+}
+
+.search-section input[type="search"] {
+  flex: 1 1 220px;
+  margin-left: 12px;
+}
+
 .search-section select:focus {
   outline: none;
-  border-color: #666;
+  border-color: var(--loreal-red);
 }
 
 /* chat section */
@@ -79,6 +94,17 @@ body {
   overflow-y: auto;
   background: #fafafa;
   margin-bottom: 20px;
+}
+.chat-window .ai-msg {
+  background: linear-gradient(90deg, #fff 0%, #fffaf6 100%);
+  border-left: 4px solid var(--loreal-gold);
+  padding: 12px;
+  margin-bottom: 10px;
+}
+.chat-window .user-msg {
+  text-align: right;
+  color: #222;
+  margin-bottom: 10px;
 }
 
 /* placeholder message */
@@ -186,6 +212,44 @@ body {
   display: flex;
   gap: 15px;
   min-height: 160px;
+  background: #fff;
+  transition: box-shadow 0.15s, transform 0.12s, border-color 0.12s;
+}
+
+.product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.product-card.selected {
+  border-color: var(--loreal-red);
+  box-shadow: 0 8px 22px rgba(255, 0, 59, 0.06);
+}
+
+.product-card .desc {
+  display: none;
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.product-card.expanded .desc {
+  display: block;
+}
+
+.product-card .meta-row {
+  margin-top: 8px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.toggle-desc-btn {
+  background: transparent;
+  border: none;
+  color: var(--loreal-red);
+  cursor: pointer;
+  font-weight: 600;
 }
 
 .product-card img {
@@ -226,30 +290,78 @@ body {
   margin-bottom: 20px;
 }
 
+.selected-item {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  border-radius: 20px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
 #selectedProductsList {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
 
-.generate-btn {
-  width: 100%;
+.selected-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
   margin-top: 20px;
-  padding: 16px;
+}
+
+.clear-btn {
+  background: transparent;
+  color: var(--loreal-red);
+  border: 2px solid var(--loreal-red);
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  order: 2;
+}
+
+.generate-btn {
+  flex: 1 1 auto;
+  order: 1;
+  margin-top: 0;
+  padding: 12px 16px;
   font-size: 18px;
   font-weight: 500;
   color: #fff;
-  background: #000;
+  background: var(--loreal-red);
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.2s;
 }
 
 .generate-btn:hover {
-  background: #666;
+  background: #e60034;
 }
 
 .generate-btn i {
   margin-right: 8px;
+}
+
+@media (max-width: 720px) {
+  .product-card {
+    flex: 0 1 calc(50% - 12px);
+  }
+}
+
+@media (max-width: 420px) {
+  .product-card {
+    flex: 0 1 100%;
+  }
+  .search-section {
+    flex-direction: column;
+  }
+  .search-section input {
+    margin-left: 0;
+    margin-top: 8px;
+  }
 }
