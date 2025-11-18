@@ -26,7 +26,7 @@
       <!-- Category Filter -->
       <div class="search-section">
         <select id="categoryFilter">
-          <option value="" disabled selected>Choose a Category</option>
+          <option value="all" selected>All Products</option>
           <option value="cleanser">Cleansers</option>
           <option value="moisturizer">Moisturizers & Treatments</option>
           <option value="haircare">Haircare</option>
@@ -37,6 +37,12 @@
           <option value="suncare">Suncare</option>
           <option value="fragrance">Fragrance</option>
         </select>
+        <input
+          id="searchInput"
+          type="search"
+          placeholder="Search products by name or keyword"
+          aria-label="Search products"
+        />
       </div>
 
       <!-- Products Grid -->
@@ -46,9 +52,12 @@
       <div class="selected-products">
         <h2>Selected Products</h2>
         <div id="selectedProductsList"></div>
-        <button id="generateRoutine" class="generate-btn">
-          <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Routine
-        </button>
+        <div class="selected-actions">
+          <button id="clearSelections" class="clear-btn">Clear All</button>
+          <button id="generateRoutine" class="generate-btn">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Routine
+          </button>
+        </div>
       </div>
 
       <!------- Chat Area ------->
